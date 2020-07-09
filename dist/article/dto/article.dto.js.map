@@ -1,0 +1,1 @@
+{"version":3,"file":"article.dto.js","sourceRoot":"","sources":["../../../src/article/dto/article.dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,yDAA8C;AAE9C,MAAa,UAAU;IAAvB;QAGa,aAAQ,GAAa,EAAE,CAAC;IAKrC,CAAC;CAAA;AANG;IADC,6BAAS,CAAC,KAAK,CAAC,EAAE,CAAC,QAAQ,CAAC,KAAK,CAAC,CAAC;;yCACZ;AAKxB;IADC,6BAAS,CAAC,IAAI,CAAC,EAAE,CAAC,QAAQ,CAAC,IAAI,CAAC,CAAC;;wCACV;AAP5B,gCAQC"}

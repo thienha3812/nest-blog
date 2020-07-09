@@ -1,0 +1,15 @@
+
+import { NestFactory, NestApplication } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { join } from 'path';
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+  const app = await NestFactory.create<NestApplication>(
+    AppModule,
+  );     
+  app.setGlobalPrefix('/api/v1');
+  a
+  await app.listen(3001);
+}
+bootstrap();
