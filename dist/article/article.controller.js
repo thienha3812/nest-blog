@@ -26,6 +26,7 @@ let ArticleController = class ArticleController {
     }
     async findAll(query, index) {
         const articles = await this.articleModel.find({ published: true }).populate('banner', 'url').populate('category', 'content').populate('tags', 'content').populate('comments').exec();
+        console.log(articles);
         return { articles: articles.slice(query.index, query.index + 6), number_page: Math.ceil(articles.length / 6) };
     }
     ;

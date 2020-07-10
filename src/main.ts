@@ -10,25 +10,13 @@ import * as cors from 'cors';
 async function bootstrap() {
   const app = await NestFactory.create<NestApplication>(
     AppModule, {
-    // logger : true,    
+    logger : true,    
     httpsOptions: {
-      key: fs.readFileSync('/home/AzureUser/ssl/server.key.pem'),
-      cert: fs.readFileSync('/home/AzureUser/ssl/ngao_tech.pem')
+      key: fs.readFileSync('/home/AzureUser/ssl/hostname.pem'),
+      cert: fs.readFileSync('/home/AzureUser/ssl/hostname.pem')
     }
-  });
-  // app.enableCors({ origin: '123', credentials: false, methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', })
-  app.use(helmet());
-  
-  const options = {
-    "origin": ["https://23.97.77.60","https://ngao.tech","http://localhost:3000"],  // attempted "origin":["http://localhost"]
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "preflightContinue": false,
-    "optionsSuccessStatus": 200,
-    "credentials":false,
-    "allowedHeaders": "Content-Type, Accept,Authorization",
-
-  }
-  app.use(cors(options))
+  });  
+  app.enableCors({origin : "*"})
   app.setGlobalPrefix('/api/v1');
   app.useGlobalPipes(new ValidationPipe({
     transform: true,
