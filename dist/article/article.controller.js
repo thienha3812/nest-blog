@@ -25,9 +25,8 @@ let ArticleController = class ArticleController {
         this.articleModel = articleModel;
     }
     async findAll(query, index) {
-        const articles = await this.articleModel.find({ published: true }).populate('banner', 'url').populate('category', 'content').populate('tags', 'content').populate('comments').exec();
-        console.log(articles);
-        return { articles: articles.slice(query.index, query.index + 6), number_page: Math.ceil(articles.length / 6) };
+        const articles = await this.articleModel.find({ published: true }).populate('banner', 'url').sort({ id: -1 }).populate('category', 'content').populate('tags', 'content').populate('comments').exec();
+        return { articles: articles.slice(query.index, query.index + 6).reverse(), number_page: Math.ceil(articles.length / 6) };
     }
     ;
     async findById(params) {
@@ -44,13 +43,13 @@ let ArticleController = class ArticleController {
         switch (type) {
             case 1:
                 number_page = Math.ceil(articles.filter(x => _.get(x, 'category.content') === 'Lập trình').length / 4);
-                return { articles: articles.filter(x => _.get(x, 'category.content') === 'Lập trình').slice(index, index + 4), number_page };
+                return { articles: articles.filter(x => _.get(x, 'category.content') === 'Lập trình').slice(index, index + 4).reverse(), number_page };
             case 2:
                 number_page = Math.ceil(articles.filter(x => _.get(x, 'category.content') === 'Công nghệ').length / 4);
-                return { articles: articles.filter(x => _.get(x, 'category.content') === 'Công nghệ').slice(index, index + 4), number_page };
+                return { articles: articles.filter(x => _.get(x, 'category.content') === 'Công nghệ').slice(index, index + 4).reverse(), number_page };
             case 3:
                 number_page = Math.ceil(articles.filter(x => _.get(x, 'category.content') === 'Chuyện bên lề').length / 4);
-                return { articles: articles.filter(x => _.get(x, 'category.content') === 'Chuyện bên lề').slice(index, index + 4), number_page };
+                return { articles: articles.filter(x => _.get(x, 'category.content') === 'Chuyện bên lề').slice(index, index + 4).reverse(), number_page };
         }
     }
     async findPopular() {
